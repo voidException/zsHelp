@@ -14,7 +14,7 @@ import {
 import React,{Component} from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import  Navigator from 'react-native-deprecated-custom-components';
+
 import  PageLogin from  '../helpQyPages/PageLogin';
 // import Login from './login';
 import MyMainPage from '../pages/mainPage';

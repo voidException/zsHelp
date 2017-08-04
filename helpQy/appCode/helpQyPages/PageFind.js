@@ -23,6 +23,7 @@ import{
     Modal
 } from 'react-native';
 import React,{Component} from 'react';
+import RedMoneyList from './RedMoneyList'
 import MyEmployee from './MyEmployee';
 let width=Dimensions.get('window').width;
 let height=Dimensions.get('window').height;
@@ -54,7 +55,10 @@ export default class PageFind extends  React.PureComponent{
         this.props.navigation.navigate('PublicList');
     }
     goAwardList(){
-        this.props.navigation.navigate('AwardList');
+        this.props.navigation.navigate('RedMoneyList');
+    }
+    goRedMoneyList(){
+        this.props.navigation.navigate('RedMoneyList');
     }
 
 
@@ -86,7 +90,7 @@ export default class PageFind extends  React.PureComponent{
                         <Text style={{color:'#4c4c4b',marginBottom:10,fontSize:16}}>喊亲友来加入方舟互助</Text>
                         <Text style={styles.inviteTxt}>每邀请一人</Text>
                         <Text style={styles.inviteTxt}>即有5元奖励</Text>
-                        <Text  onPress={this.goAwardList.bind(this)} style={styles.myaward}>我的奖励>></Text>
+                        <Text  onPress={this.goRedMoneyList.bind(this)} style={styles.myaward}>我的奖励>></Text>
                     </View>
                     <View style={styles.inviteRight}>
                         <Image source={require('./img/feiren.png')}  resizeMode={'contain'} style={{height:130,width:140}}/>

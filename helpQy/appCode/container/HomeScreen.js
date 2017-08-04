@@ -49,6 +49,7 @@ import  QiyeHarmCondition from '../helpQyPages/webView/QiyeHarmCondition';
 import  MyEmployeeList from '../helpQyPages/MyEmployeeList';
 import  MyhomeFlatList from '../helpQyPages/MyhomeFlatList';
 import  PageFind from '../helpQyPages/PageFind';
+import RedMoneyList from "../helpQyPages/RedMoneyList";
 var height = Dimensions.get('window').height - 70;
 
 const TabNav = TabNavigator(
@@ -254,6 +255,9 @@ const HomeScreen = StackNavigator({
     },
     QiyeDaBingCondition:{
         screen:QiyeDaBingCondition
+    },
+    RedMoneyList:{
+        screen:RedMoneyList
     }
 },{
     headerMode:'float',

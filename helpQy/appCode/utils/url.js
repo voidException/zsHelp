@@ -1,4 +1,4 @@
-let commonUrl='http://192.168.1.165:8080/glove';
+let commonUrl='http://localhost:8080/glove';
 
 export const URLLogin=commonUrl+'/user/login.do';
 export const URLRegister=commonUrl+'/user/register.do';
@@ -7,6 +7,8 @@ export const UrlStatistics=commonUrl+'/ship/getStatistics.do'; //获取统计表
 export const UrlAddEmployee=commonUrl+'/ship/addEmployee.do'; //新增员工
 export const UrlgetMyemployee=commonUrl+'/ship/getMyEmployee.do'; //获取我的员工列表
 export const UrlgetPublicList=commonUrl+'/ship/getPublicList.do'; //获得公示列表
+export const UrlgetMyRedMoney=commonUrl+'/person/myCoupon.do';  //红包
+export const UrluseMyRedMoney=commonUrl+'/person/useMyRedMoney.do';//使用红包
 
 /********************以下是以前的************************************************/
 export const URLWeiboPage=commonUrl+'/tuiwen/getTweetByOtherUseriD'; //咋userPage页面查看对方发布的微博
