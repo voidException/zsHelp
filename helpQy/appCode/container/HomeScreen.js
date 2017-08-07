@@ -258,7 +258,7 @@ const HomeScreen = StackNavigator({
     },
     RedMoneyList:{
         screen:RedMoneyList
-    }
+    },
 },{
     headerMode:'float',
     mode:'modal'

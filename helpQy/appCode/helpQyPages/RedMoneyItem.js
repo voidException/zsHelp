@@ -14,19 +14,23 @@ let ratio = PixelRatio.get();
 export default class RedMoneyItem extends Component{
     constructor(props){
         super(props);
-        this.status={
+        this.state={
             MoneyStatus:"active",
             startTime:"a",
             endTime:"",
+            isPressed:true,
+            disabled:false,
         }
 
     }
 
     componentWillMount(){
+
         //格式化时间
         let timeNeedHandle=this.props.row.redmoneydate;
         let redmoneyState=this.props.row.redmoneystate;
-        var date = new Date(timeNeedHandle);
+
+        let date = new Date(timeNeedHandle);
         Y = date.getFullYear() + '-';
         M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
         D = date.getDate() + ' ';
@@ -41,6 +45,13 @@ export default class RedMoneyItem extends Component{
             isPressed:false,
             disabled:true,
         });
+        if(redmoneyState=="used"){
+            console.log("这是一个已经使用的红包");
+            this.setState({
+                isPressed:true,
+                disabled:true
+            })
+        }
     }
 
     _onPressButton(){
@@ -51,21 +62,24 @@ export default class RedMoneyItem extends Component{
                 disabled:true,
             });
                 console.log("红包已经是使用状态了");
-        let redMoney={
-                    useruuid:'94111BD33D3F474590C535C0BE24905B',
-                    redmoneystate:this.state.MoneyStatus,
-                    };
-        let options={
-            url:UrluseMyRedMoney,
-            body:JSON.stringify(redMoney)
-        };
-        let response=fetchTool(options);
-        response.then(resp=>{
-            console.log(resp.result)
-            if(resp.retcode=2000){
-                console.log("使用红包成功")
-            }
-        })
+
+
+                //使用红包的方法
+        // let redMoney={
+        //             useruuid:'94111BD33D3F474590C535C0BE24905B',
+        //             redmoneystate:this.state.MoneyStatus,
+        //             };
+        // let options={
+        //     url:UrluseMyRedMoney,
+        //     body:JSON.stringify(redMoney)
+        // };
+        // let response=fetchTool(options);
+        // response.then(resp=>{
+        //     console.log(resp.result)
+        //     if(resp.retcode=2000){
+        //         console.log("使用红包成功")
+        //     }
+        // })
     }
 
 

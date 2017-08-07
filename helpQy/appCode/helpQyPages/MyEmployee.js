@@ -32,6 +32,7 @@ export default class MyEmployee extends  React.PureComponent{
         this.state = {
             modalVisible: false,
             transparent: true,
+            theNameOfCategoryType:"",
         };
     }
     componentDidMount(){
@@ -51,9 +52,9 @@ export default class MyEmployee extends  React.PureComponent{
                 <View style={styles.itemtop}>
                     <View style={styles.nameOuter}>
                         <View style={styles.nameWrapper}>
-                            <Text style={{color:'#fff',}}>战三</Text>
+                            <Text style={{color:'#fff',}}>{this.props.row.username}</Text>
                         </View>
-                        <Text style={{fontSize:20}}>中青年抗癌计划</Text>
+                        <Text style={{fontSize:20}}>{this.props.row.categorytype}</Text>
                     </View>
                     <Image source={require('./img/userPhoto.png')} resizeMode={'contain'} style={{width:70,height:70,borderRadius:35,}}  />
                 </View>
@@ -66,7 +67,7 @@ export default class MyEmployee extends  React.PureComponent{
                 <View style={styles.itemBottom}>
                     <View style={styles.itemBottomLeft}>
                         <Text style={{fontSize:20}}>￥</Text>
-                        <Text style={{fontSize:20}}>9</Text>
+                        <Text style={{fontSize:20}}>{this.props.row.remainfee/100}</Text>
                     </View>
                     <View style={styles.itemBottomRight}>
                         <Text onPress={this.goLogin.bind(this)}>充值</Text>

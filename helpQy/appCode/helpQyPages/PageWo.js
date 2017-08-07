@@ -88,6 +88,7 @@ export  default class PageWo extends Component{
         this.props.navigation.navigate('PageAddEmployee',{user: 'Brent'});
     }
     goMyEmployee(){
+
         this.props.navigation.navigate('MyEmployeeList');
     }
     goPageApplyHelp(){
