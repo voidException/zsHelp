@@ -154,20 +154,18 @@ let styles=StyleSheet.create({
         alignItems:'center',
         justifyContent:'center',
         width:width,
-
     },
     chongzhi:{
         borderRadius:5,
         width:width,
-        backgroundColor:'red',
+        backgroundColor:'#cecece',
         height:40,
         flexDirection:'row',
         justifyContent:'center',
         alignItems:'center'
     },
     chongzhiTxt:{
-        color:'white',
-        fontWeight:'bold',
-        fontSize:18
+        color:'#d95847',
+        fontSize:15
     }
 });

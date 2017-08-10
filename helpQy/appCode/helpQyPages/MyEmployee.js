@@ -33,11 +33,62 @@ export default class MyEmployee extends  React.PureComponent{
             modalVisible: false,
             transparent: true,
             theNameOfCategoryType:"",
+            lagTime:0, //距离加入时间的天数
+            profilePhotoPath:""
         };
     }
-    componentDidMount(){
-        //这里要获取已经加入的人数
-        console.log(this.props.row)
+    componentWillMount(){
+        let lagTime=this.getLagTime(this.props.row.joindate); //获取距离加入的天数  int
+
+        let imgPath=this.getProfilePhotoPath(this.props.row.categorytype);
+
+        if(this.props)
+            this.setState({
+                theNameOfCategoryType:this.getCategoryType(this.props.row.categorytype),//互助类型
+                lagTime:lagTime, //加入天数
+                profilePhotoPath:imgPath,
+            })
+
+    }
+
+
+
+
+    getLagTime(joindate) {
+        let dateNow = new Date();
+        let joinDate=new Date(joindate);
+        lagTime=dateNow.getTime()-joinDate.getTime();
+        lagTimeInt=Math.floor(lagTime/(24*3600*1000));
+        return lagTimeInt;
+    }
+    getCategoryType(type){//通过后台的数据获得具体的类型
+        if(type=="little")
+            return "少儿健康互助";
+        if(type=="young")
+            return "中青年抗癌计划";
+        if(type=="old")
+            return "中老年抗癌计划";
+        if(type=="yiwai")
+            return "综合意外互助";
+        if(type=="staff")
+            return "员工大病互助";
+        if(type=="employee")
+            return "员工意外伤害互助";
+    }
+
+    getProfilePhotoPath(categorytype){
+        if(categorytype=="little")
+            return require('./img/children.png');
+        if(categorytype=="young")
+            return require('./img/young.png');
+        if(categorytype=="old")
+            return require('./img/old.png');
+        if(categorytype=="yiwai")
+            return require('./img/children.png');
+        if(categorytype=="staff")
+            return require('./img/yuangongdabing.png');
+        if(categorytype=="employee")
+            return require('./img/yuangonghuzhu.png');
     }
 
     goLogin(){
@@ -45,6 +96,8 @@ export default class MyEmployee extends  React.PureComponent{
     }
 
     render(){
+        console.log(this.state.lagTime+"shiajin ")
+
 
         return(
             <View style={styles.container}>
@@ -54,14 +107,18 @@ export default class MyEmployee extends  React.PureComponent{
                         <View style={styles.nameWrapper}>
                             <Text style={{color:'#fff',}}>{this.props.row.username}</Text>
                         </View>
-                        <Text style={{fontSize:20}}>{this.props.row.categorytype}</Text>
+                        <Text style={{fontSize:20}}>{this.state.theNameOfCategoryType}</Text>
                     </View>
-                    <Image source={require('./img/userPhoto.png')} resizeMode={'contain'} style={{width:70,height:70,borderRadius:35,}}  />
+                    <Image source={this.state.profilePhotoPath} resizeMode={'contain'} style={{width:70,height:70,borderRadius:35,}}  />
                 </View>
                 {/**/}
                 <View style={styles.itemMiddle}>
                     <Image source={require('./img/authorize_ico.png')}  resizeMode={'contain'} style={{width:16,height:16}}/>
-                    <Text style={{fontSize:12,marginLeft:10}}>已加入<Text>30</Text>天，等待剩余期<Text>150</Text>天</Text>
+
+                    {this.state.lagTime>180? <Text style={{color:'red'}}>超过180天,已经开始互助计划</Text>:
+                        <Text style={{fontSize:12,marginLeft:10}}>已加入<Text>{this.state.lagTime}</Text>天，等待剩余期<Text>{180-this.state.lagTime}</Text>天</Text>}
+                        {/*三目运算符判断是否加入超过180天*/}
+                    <Text>{this.datenow}</Text>
                 </View>
                 {/**/}
                 <View style={styles.itemBottom}>

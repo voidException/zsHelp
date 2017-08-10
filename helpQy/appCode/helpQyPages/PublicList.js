@@ -54,7 +54,6 @@ export  default  class PublicList extends React.PureComponent{
                     dataSource: resp.lp
                 });
             }
-
             //停止转圈圈
             this.setState({
                 visible:false

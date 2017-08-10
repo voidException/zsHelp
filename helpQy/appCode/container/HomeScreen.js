@@ -50,12 +50,14 @@ import  MyEmployeeList from '../helpQyPages/MyEmployeeList';
 import  MyhomeFlatList from '../helpQyPages/MyhomeFlatList';
 import  PageFind from '../helpQyPages/PageFind';
 import RedMoneyList from "../helpQyPages/RedMoneyList";
+import PageDescriptionOfGongshi from '../helpQyPages/PageDescriptionOfGongshi';
 var height = Dimensions.get('window').height - 70;
 
 const TabNav = TabNavigator(
     {
         PageZhuye: {
             screen: PageZhuYe,  //PageZhuYe
+            // screen: PageLogin,  //PageZhuYe
             path: '/',
             navigationOptions: {
                 title: '主页',
@@ -259,6 +261,60 @@ const HomeScreen = StackNavigator({
     RedMoneyList:{
         screen:RedMoneyList
     },
+    PageDescriptionOfGongshi:{
+        screen:PageDescriptionOfGongshi
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 },{
     headerMode:'float',
     mode:'modal'

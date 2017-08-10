@@ -121,13 +121,9 @@ export default class PageFindPasswd extends Component{
 
         return(
             <View style={{backgroundColor:'#FFFFFF',flex:1}}>
-                <View style={styles.glove}>
-                    <Text style={{color:'green',fontSize:16}}>密码会发送到您的邮箱📮</Text>
-                </View>
-
                 <View style={styles.email}>
                     <View style={styles.labelWrap}>
-                        <Text style={styles.emailText}>邮箱</Text>
+                        <Image source={require('./img/mailbox.png')} style={{width:30,height:30}}/>
                     </View>
                     <View style={styles.inputWrap}>
                         <TextInput
@@ -143,10 +139,18 @@ export default class PageFindPasswd extends Component{
                             autoCorrect={false}
                             onChange={this.handleEmailChange.bind(this)}/>
                     </View>
+
                 </View>
+
+
                 {/*<View style={styles.err}>{errTip}</View>*/}
-                <View  style={styles.loginwrap}>
-                    <Text onPress={this.startFindPassword.bind(this)} style={styles.login}>确认</Text>
+                <View  style={styles.loginwrap} >
+                    <TouchableOpacity style={styles.loginTouch}>
+                        <Text style={{color:'#FFFFFF'}}>提交</Text>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.glove}>
+                    <Text style={{color:'#8a8a8a',fontSize:10,width:width*0.8}}>小提示：密码会发送到您的邮箱！</Text>
                 </View>
                 <Loading  visible={this.state.visible}/>
             </View>
@@ -157,7 +161,9 @@ export default class PageFindPasswd extends Component{
 let styles=StyleSheet.create({
     container:{
         flex:1,
-        flexDirection:'column'
+        flexDirection:'column',
+        alignItems:'center',
+        justifyContent:'center'
     },
     header:{
         height:50,
@@ -177,7 +183,7 @@ let styles=StyleSheet.create({
         height:24,
         width:24
     },
-    glove:{
+    email:{
         flexDirection:'row',
         alignItems:'center',
         justifyContent:'center',
@@ -191,9 +197,10 @@ let styles=StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
-    email:{
+    glove:{
         flexDirection:'row',
         alignItems:'center',
+        justifyContent:'center',
         backgroundColor:'#FFFFFF',
         height:44
     },
@@ -222,6 +229,7 @@ let styles=StyleSheet.create({
     labelWrap: {
         height: 45,
         justifyContent: 'center',
+        alignItems:'center'
     },
     label: {
         fontSize: 16,
@@ -231,15 +239,18 @@ let styles=StyleSheet.create({
         color:'#666666'
     },
     inputWrap: {
-        height: 45,
-        justifyContent: 'center'
+        height: 44,
+        justifyContent: 'center',
+        width:width*0.7,
+        borderBottomWidth:1/ratio,
+        borderBottomColor:'#CCCCCC'
     },
     passwordinput:{
         height: 45,
         width: 320,
         fontSize: 16,
         paddingLeft: 10,
-        color:'#333333'
+        color:'#333333',
     },
     err:{
         flexDirection:'row',
@@ -247,14 +258,22 @@ let styles=StyleSheet.create({
         justifyContent:'center',
         marginTop:10
     },
-    loginwrap:{
+    loginwrap:{   //  按钮总的view
         flexDirection:'row',
         marginTop:20,
         alignItems:'center',
         justifyContent:'center',
         width:width,
-        height:36,
-        backgroundColor:'#8FDF5A'
+        height:46,
+    },
+    loginTouch:{   //touch的class
+        width:width*0.8,
+        height:34,
+        backgroundColor:'#1296db',
+        borderRadius:15,
+        flexDirection:'row',
+        justifyContent:'center',
+        alignItems:'center'
     },
     login:{
         fontSize:16,

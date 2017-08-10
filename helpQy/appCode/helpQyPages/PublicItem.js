@@ -21,6 +21,11 @@ export default class PublicItem extends Component{
         // console.log(this.props);
         this.state={
             tweetid: 0, //推文的id,0有特殊含义
+            time:"",
+            username:"",
+            categorytype:"",
+            needmoney:0,
+            description:""
 
         }
     }
@@ -35,32 +40,69 @@ export default class PublicItem extends Component{
         // this.setState({
         //     publishtime:itemEndTime
         // });
-    }
-    componentWillReceiveProps(nextProps) {
+        publicTime=this.getPublicTime(this.props.row.joindate);
+        categoryType=this.getCategoryType(this.props.row.categorytype);
+        peopleNeedMoney=this.props.row.needmoney;
+        this.setState({
+            time:publicTime,
+            username:this.props.row.username,
+            categorytype:categoryType,
+            needMoney:peopleNeedMoney,
+            description:this.props.row.description,
+        })
 
+    }
+
+    getPublicTime(publictime){
+        let date = new Date(publictime);
+        let Y = date.getFullYear() + '-';
+        let M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+        let D = date.getDate()+' ';
+        if (D>=0 && D<=9) {
+            D="0"+D;
+            let finalDate=Y+M+D;
+            return finalDate;
+       }
+};
+
+    getCategoryType(type){//通过后台的数据获得具体的类型
+        if(type=="little")
+            return "少儿健康互助";
+        if(type=="young")
+            return "中青年抗癌计划";
+        if(type=="old")
+            return "中老年抗癌计划";
+        if(type=="yiwai")
+            return "综合意外互助";
+        if(type=="staff")
+            return "员工大病互助";
+        if(type=="employee")
+            return "员工意外伤害互助";
+    }
+
+    _onPressContent(){
+        this.props.navigation.navigate('PageDescriptionOfGongshi',{publicMes:this.props.row});
     }
 
     render(){
         return(
             <View style={{flex:1,marginTop:30 }}>
-                <View style={styles.riqi}>
-                    <Text>2017-05-26</Text>
+                <View style={styles.date}>
+                    <Text>{this.state.time}</Text>
                 </View>
                 {/*头像昵称等*/}
 
                 <View style={styles.userProfile}>
-                    <Image source={require('./img/1024.png')} style={{width:50,height:50}} resizeMode={'contain'}/>
+                    <Image source={{uri:this.props.row.img1}} style={{width:50,height:50}} resizeMode={'contain'}/>
                     <View style={{marginLeft:10}}>
-                        <Text>互助员工：<Text>孙东子</Text></Text>
-                        <Text>互助企业：<Text>北京大地公司</Text></Text>
-                        <Text>金额：<Text>3000元</Text></Text>
+                        <Text>互助会员：<Text>{this.state.username}</Text></Text>
+                        <Text>互助计划：<Text>{this.state.categorytype}</Text></Text>
+                        <Text>所需金额：<Text>{this.state.needmoney}</Text></Text>
                     </View>
                 </View>
                 <TouchableOpacity>
                     <Text style={{margin:10}}>事件概述：</Text>
-                    <Text style={{marginLeft:10,marginRight:10}}>庆祝建国150周年，加拿大最近出了一款会夜光的硬币！！
-                        这个2加元的硬币画着加拿大的一个特色 -- 极光，而这个极光用的正是荧光材料，
-                        黑暗的地方会发出夜光...
+                    <Text style={{marginLeft:10,marginRight:10}} onPress={this._onPressContent.bind(this)}>{this.state.description}
                     </Text>
                 </TouchableOpacity>
             </View>
@@ -70,7 +112,7 @@ export default class PublicItem extends Component{
 
 let styles=StyleSheet.create({
 
-    riqi:{
+    date:{
         flexDirection:'row',
         height:40,
         alignItems:'center',
@@ -164,7 +206,7 @@ let styles=StyleSheet.create({
 
 
 
-
+``
 
 
 

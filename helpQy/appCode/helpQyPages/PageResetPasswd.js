@@ -139,27 +139,29 @@ export default class PageResetPassword extends Component{
                         onChange={this.getOrginPass.bind(this)}/>
                 </View>
                 <View style={styles.commonInputWrapper}>
-                    <Text style={styles.authoText}>新密码:</Text>
+                    <Text style={styles.authoText}>新的密码:</Text>
                     <TextInput
                         style={styles.authCode}
                         placeholderTextColor={'#CCCCCC'}
                         underlineColorAndroid={'rgba(0,0,0,0)'}
                         keyboardType={'default'}
-                        placeholder={'输入新密码'}
+                        placeholder={'新的密码'}
                         onChange={this.getNewPass.bind(this)}/>
                 </View>
                 <View style={styles.commonInputWrapper}>
-                    <Text style={styles.authoText}>再次输入新密码:</Text>
+                    <Text style={styles.authoText}>重复新密码:</Text>
                     <TextInput
                         style={styles.authCode}
                         placeholderTextColor={'#CCCCCC'}
                         underlineColorAndroid={'rgba(0,0,0,0)'}
                         keyboardType={'default'}
-                        placeholder={'再次输入新密码'}
+                        placeholder={'重复新密码'}
                         onChange={this.getAgainPass.bind(this)}/>
                 </View>
-                <View  style={styles.loginwrap}>
-                    <Text onPress={this.doCommit.bind(this)}  style={styles.login}>提交</Text>
+                <View  style={styles.loginwrap} >
+                    <TouchableOpacity style={styles.loginTouch}>
+                        <Text style={{color:'#FFFFFF'}}>提交</Text>
+                    </TouchableOpacity>
                 </View>
                 <Loading  visible={this.state.visible}/>
             </View>
@@ -224,14 +226,22 @@ let  styles=StyleSheet.create({
         textAlign:'left',
         textAlignVertical:'center'
     },
-    loginwrap:{
+    loginwrap:{                                             //  按钮总的view
         flexDirection:'row',
         marginTop:20,
         alignItems:'center',
         justifyContent:'center',
         width:width,
-        height:36,
-        backgroundColor:'#8FDF5A'
+        height:46,
+    },
+    loginTouch:{                                                //touch的class
+        width:width*0.9,
+        height:34,
+        backgroundColor:'#1296db',
+        borderRadius:15,
+        flexDirection:'row',
+        justifyContent:'center',
+        alignItems:'center'
     },
     login:{
         fontSize:16,

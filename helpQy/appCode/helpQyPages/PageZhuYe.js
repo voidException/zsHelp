@@ -82,6 +82,7 @@ export default  class PageZhuYe extends  Component{
         });
     }
     goFAQ(){ //去常见问题
+        // this.props.navigation.navigate('PageDescriptionOfGongshi')  //测试界面
         this.props.navigation.navigate('FAQ')
     }
     goAboutUs(){//关于我们

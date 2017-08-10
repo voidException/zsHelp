@@ -212,9 +212,10 @@ export default class PageAddEmployee extends  Component{
                         </View>
                     </View>
                 </View>
-
-                <View  style={styles.loginwrap}>
-                    <Text  onPress={this.doAddEmployee.bind(this)}  style={styles.login}>确认</Text>
+                <View  style={styles.loginwrap} >
+                    <TouchableOpacity style={styles.loginTouch}>
+                        <Text style={{color:'#FFFFFF'}}>确认</Text>
+                    </TouchableOpacity>
                 </View>
                 <Loading visible={this.state.visible} />
             </View>
@@ -322,14 +323,22 @@ let styles=StyleSheet.create({
         marginLeft:3,
         marginRight:3
     },
-    loginwrap:{
+    loginwrap:{                                             //  按钮总的view
         flexDirection:'row',
         marginTop:20,
         alignItems:'center',
         justifyContent:'center',
         width:width,
-        height:36,
-        backgroundColor:'#8FDF5A'
+        height:46,
+    },
+    loginTouch:{                                                //touch的class
+        width:width*0.9,
+        height:34,
+        backgroundColor:'#1296db',
+        borderRadius:15,
+        flexDirection:'row',
+        justifyContent:'center',
+        alignItems:'center'
     },
     login:{
         fontSize:16,

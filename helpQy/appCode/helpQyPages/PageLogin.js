@@ -15,6 +15,8 @@ import{
     TextInput,
     Dimensions,
     Alert,
+    PixelRatio,
+
 
 } from 'react-native';
 import React,{ Component, } from 'react';
@@ -24,6 +26,7 @@ import fetchTool from '../utils/fetchTool';
 import UserPhoto from  '../components/userPhoto';
 let Platform = require('react-native').Platform;
 let {width,height}=Dimensions.get('window');
+let ratio = PixelRatio.get();
 
 export default class PageLogin extends Component{
     constructor(props){
@@ -174,7 +177,7 @@ export default class PageLogin extends Component{
         });
     }
     goZhuCe(){
-        this.props.navigation.navigate('PageRegister');
+        this.props.navigation.navigate('PageR\egister');
     }
     goFindPasswordPage(){ //找回密码
         this.props.navigation.navigate('PageFindPasswd');
@@ -204,7 +207,7 @@ export default class PageLogin extends Component{
 
                 <View style={styles.email}>
                     <View style={styles.labelWrap}>
-                        <Text style={styles.emailText}>邮箱</Text>
+                        <Image source={require('./img/mailbox.png')} style={{width:30,height:30}}/>
                     </View>
                     <View style={styles.inputWrap}>
                         <TextInput
@@ -224,7 +227,7 @@ export default class PageLogin extends Component{
                 </View>
                 <View style={styles.password}>
                     <View style={styles.labelWrap}>
-                        <Text style={styles.label}>密码</Text>
+                        <Image source={require('./img/password.png')}  style={{width:30,height:30}}/>
                     </View>
                     <View style={styles.inputWrap}>
                         <TextInput
@@ -239,12 +242,16 @@ export default class PageLogin extends Component{
                             />
                     </View>
                 </View>
-                <View  style={styles.loginwrap}>
-                    <Text onPress={this.goLogin.bind(this)}  style={styles.login}>登录</Text>
+
+                <View  style={styles.loginwrap} >
+                    <TouchableOpacity style={styles.loginTouch} onPress={this.goLogin.bind(this)}>
+                        <Text style={{color:'#FFFFFF'}}>登录</Text>
+                    </TouchableOpacity>
                 </View>
                 <View style={styles.bottom}>
-                    <Text  onPress={this.goZhuCe.bind(this)}>还没注册？</Text>
-                    <Text onPress={this.goFindPasswordPage.bind(this)}>忘记密码？</Text>
+                    <Text  onPress={this.goZhuCe.bind(this)} style={{color:'#1296db'}}>还没注册？</Text>
+                    <Text  style={{color:'#1296db'}}>|  </Text>
+                    <Text onPress={this.goFindPasswordPage.bind(this)} style={{color:'#1296db'}}>忘记密码？</Text>
                 </View>
                 <Loading visible={this.state.visible} />
             </View>
@@ -257,16 +264,15 @@ let styles=StyleSheet.create({
     container:{
         flex:1,
         flexDirection:'column',
-        backgroundColor:'#ffffff'
+        alignItems:'center',
+        backgroundColor:'#FFFFFF'
     },
     userPhoto:{
         justifyContent:'flex-start',
         alignItems:'center',
         marginTop:20
     },
-    loginwrap:{
-        marginTop:60,
-    },
+
     uploadAvatar:{
         width:100,
         height:100
@@ -276,17 +282,21 @@ let styles=StyleSheet.create({
         flexDirection:'row',
         alignItems:'flex-end',
         justifyContent:'space-around',
-        marginBottom:20
+        marginBottom:20,
     },
     email:{
         flexDirection:'row',
         alignItems:'center',
+        justifyContent:'center',
         backgroundColor:'#FFFFFF',
-        height:44
+        height:60,
+        width:width*0.9,
+        borderTopLeftRadius:5,
+        borderTopRightRadius:5,
     },
     emailText:{
         fontSize: 16,
-        marginLeft: 10,
+        marginLeft: 50,
         borderWidth: 1,
         borderColor: 'transparent',
         color:'#666666'
@@ -304,7 +314,12 @@ let styles=StyleSheet.create({
         //borderTopWidth: 1/ratio,
         //borderBottomWidth: 1/ratio,
         borderColor: '#ccc',
-        backgroundColor:'#FFFFFF'
+        backgroundColor:'#FFFFFF',
+        width:width*0.9,
+        height:60,
+        justifyContent:'center',
+        borderBottomLeftRadius:5,
+        borderTopRightRadius:5,
     },
     labelWrap: {
         height: 45,
@@ -312,7 +327,7 @@ let styles=StyleSheet.create({
     },
     label: {
         fontSize: 16,
-        marginLeft: 10,
+        marginLeft: 50,
         borderWidth: 1,
         borderColor: 'transparent',
         color:'#666666'
@@ -321,11 +336,12 @@ let styles=StyleSheet.create({
         borderBottomColor:'#CCCCCC',
         backgroundColor:'#FFFFFF',
         height: 45,
-        justifyContent: 'center'
+        justifyContent: 'center',
+        borderBottomWidth:1/ratio
     },
     passwordinput:{
-        height: 45,
-        width: 320,
+        height: 60,
+        width: width*0.7,
         fontSize: 16,
         paddingLeft: 10,
     },
@@ -335,14 +351,22 @@ let styles=StyleSheet.create({
         justifyContent:'center',
         marginTop:10
     },
-    loginwrap:{
+    loginwrap:{                                             //  按钮总的view
         flexDirection:'row',
         marginTop:20,
         alignItems:'center',
         justifyContent:'center',
         width:width,
-        height:36,
-        backgroundColor:'#8FDF5A'
+        height:46,
+    },
+    loginTouch:{                                                //touch的class
+        width:width*0.8,
+        height:34,
+        backgroundColor:'#1296db',
+        borderRadius:15,
+        flexDirection:'row',
+        justifyContent:'center',
+        alignItems:'center'
     },
     login:{
         fontSize:16,
