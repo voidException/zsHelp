@@ -10,6 +10,7 @@ import React,{ Component } from 'react';
 import {UrluseMyRedMoney} from "../utils/url";
 import fetchTool from "../utils/fetchTool";
 let {width,height}=Dimensions.get('window');
+import PageUseRedMoney from './PageUseRedMoney'
 let ratio = PixelRatio.get();
 export default class RedMoneyItem extends Component{
     constructor(props){
@@ -43,10 +44,8 @@ export default class RedMoneyItem extends Component{
             startTime:itemEndTime,
             MoneyStatus:redmoneyState,
             isPressed:false,
-            disabled:true,
         });
         if(redmoneyState=="used"){
-            console.log("这是一个已经使用的红包");
             this.setState({
                 isPressed:true,
                 disabled:true
@@ -61,8 +60,7 @@ export default class RedMoneyItem extends Component{
                 isPressed:true,
                 disabled:true,
             });
-                console.log("红包已经是使用状态了");
-
+        this.props.navigation.navigate('PageUseRedMoney',{RedMoney:this.props.row})
 
                 //使用红包的方法
         // let redMoney={
@@ -87,15 +85,18 @@ export default class RedMoneyItem extends Component{
     render(){
         return(
             <View style={styles.ZongView}>
-                <View style={styles.MoneyView}>
-                    <Text style={{textAlign:'center',color:'#f44e38'}}>￥<Text style={{textAlign:'center',color:'#f44e38',fontSize:45,fontWeight:'bold'}}>5</Text></Text>
-                </View>
-                <View  style={styles.StatusView}>
-                    <Text style={styles.StatusFont}>{this.state.startTime}过期{this.state.MoneyStatus}</Text>
+                <View style={styles.MoneyAndStatusView}>
+                    <View style={styles.MoneyView}>
+                        <Text style={{textAlign:'center',color:'#f44e38'}}>￥<Text style={{textAlign:'center',color:'#f44e38',fontSize:45,fontWeight:'bold'}}>5</Text></Text>
+                    </View>
+                    <View  style={styles.StatusView}>
+                        <Text style={styles.StatusFont}>{this.state.startTime}过期{this.state.MoneyStatus}</Text>
+                    </View>
                 </View>
                 <View style={styles.BashedLine}></View>
+
                 <View  style={styles.ButtonView}>
-                    <TouchableOpacity display={this.state.disabled} style={{width:80,
+                    <TouchableOpacity disabled={this.state.disabled} style={{width:80,
                         height:30,
                         // backgroundColor:'#fa543c',
                         backgroundColor:this.state.isPressed?'#d3d3d3':'#fa543c',
@@ -121,26 +122,36 @@ const styles=StyleSheet.create({
         flexDirection:'row',
         alignContent:'center',
         justifyContent:'center',
-        height:width*0.25,
+        height:100,
         marginTop:15,
-        marginLeft:10,
-        marginRight:10,
+        width:width,
+        paddingLeft:10,
+        paddingRight:10
     },
     MoneyView: {
-        flex:2,
         alignContent:'center',
         justifyContent:'center',
         backgroundColor:'#fdfdfd',
         borderTopLeftRadius:3,
-        borderBottomLeftRadius:3
+        borderBottomLeftRadius:3,
+        width:width*0.2,
+        height:100
     },
     StatusView:{
-        flex:3,
         alignContent:'center',
         justifyContent:'center',
         borderTopRightRadius:5,
         borderBottomRightRadius:5,
-        backgroundColor:'#fdfdfd'
+        backgroundColor:'#fdfdfd',
+        flex:1
+    },
+    MoneyAndStatusView:{
+        flexDirection:'row',
+        alignItems:'center',
+        justifyContent:'space-between',
+        flex:1,
+        backgroundColor:'#FFFFFF',
+        borderRadius:4
     },
     ButtonView:{
         flexDirection:'row',
@@ -149,9 +160,10 @@ const styles=StyleSheet.create({
         borderTopLeftRadius:5,
         borderBottomLeftRadius:5,
         backgroundColor:'#fdfdfd',
-        width:100,
-        borderTopRightRadius:3,
-        borderBottomRightRadius:3,
+        width:width*0.35,
+        borderTopRightRadius:4,
+        borderBottomRightRadius:4,
+        height:100
     },
     BashedLine:{
         borderColor:'black',

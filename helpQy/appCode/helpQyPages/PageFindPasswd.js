@@ -258,7 +258,7 @@ let styles=StyleSheet.create({
         justifyContent:'center',
         marginTop:10
     },
-    loginwrap:{   //  按钮总的view
+    loginwrap:{                        //  按钮总的view
         flexDirection:'row',
         marginTop:20,
         alignItems:'center',
@@ -266,7 +266,7 @@ let styles=StyleSheet.create({
         width:width,
         height:46,
     },
-    loginTouch:{   //touch的class
+    loginTouch:{                         //touch的class
         width:width*0.8,
         height:34,
         backgroundColor:'#1296db',

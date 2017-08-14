@@ -51,7 +51,7 @@ export default class PageDescriptionOfGongshi extends Component {
     }
 
     render() {
-        const { params } = this.props.navigation.state;
+        const{ params } =this.props.navigation.state;
         return (
             <ScrollView>
                 <View style={styles.SecondView}>

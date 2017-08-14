@@ -34,7 +34,7 @@ export  default  class RedMoneyList extends Component{
 
     componentWillMount(){
         let redMoney={
-            useruuid:'11',
+            useruuid:'94111BD33D3F474590C535C0BE24905B',
             redmoneydate:'2030-01-01',//读取最后一个列表的时间
         };
         let options={
@@ -151,11 +151,10 @@ export  default  class RedMoneyList extends Component{
 
     render(){
         return(
-            <View  style={{flex:1,backgroundColor:'#e7d45e'}}>
-                {this.state.animating?    //第一级三目运算符
-                    <ActivityIndicator animating={this.state.animating}
+                <View  style={{flex:1,backgroundColor:'#e7d45e'}}>
+                {this.state.animating?<ActivityIndicator animating={this.state.animating}
                 style={[styles.centering, {height: 80,flex:1}]}
-                size="small" /> :<View style={{flex:1,flexDirection:'column',justifyContent:'center',alignItems:'center',backgroundColor:'#e6e6e6'}}>{this.state.haveDataOrNoData?<FlatList  //第二级运算符  用于判断是否存在红包数据
+                size="small" />:<View style={{flex:1,flexDirection:'column',justifyContent:'center',alignItems:'center',backgroundColor:'#e6e6e6'}}>{this.state.haveDataOrNoData?<FlatList  //第二级运算符  用于判断是否存在红包数据
                     refreshControl={
                         <RefreshControl
                             refreshing={this.state.isRefreshing}
@@ -178,11 +177,6 @@ export  default  class RedMoneyList extends Component{
                     <Image source={require('./img/NotHappy.png')} style={{width:80,height:80}}/>
                     <Text style={{paddingTop:15,color:'#bfbfbf',fontSize:18}}>您还没有红包哦!</Text>
                 </View>}</View>}
-
-
-
-
-
             </View>
         );
 

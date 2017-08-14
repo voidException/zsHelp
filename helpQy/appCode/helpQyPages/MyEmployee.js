@@ -22,6 +22,7 @@ import{
     Modal
 } from 'react-native';
 import React,{Component} from 'react';
+import PageRecharge from './PageRecharge';
 
 let width=Dimensions.get('window').width;
 let height=Dimensions.get('window').height;
@@ -92,7 +93,7 @@ export default class MyEmployee extends  React.PureComponent{
     }
 
     goLogin(){
-        this.props.navigation.navigate('PageLogin');
+        this.props.navigation.navigate('PageRecharge',{EmployeeMsg:this.props.row});
     }
 
     render(){
@@ -127,7 +128,10 @@ export default class MyEmployee extends  React.PureComponent{
                         <Text style={{fontSize:20}}>{this.props.row.remainfee/100}</Text>
                     </View>
                     <View style={styles.itemBottomRight}>
-                        <Text onPress={this.goLogin.bind(this)}>充值</Text>
+                        <TouchableOpacity>
+                            <Text onPress={this.goLogin.bind(this)}>充值</Text>
+                        </TouchableOpacity>
+
                     </View>
                 </View>
 

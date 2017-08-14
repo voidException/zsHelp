@@ -51,6 +51,8 @@ import  MyhomeFlatList from '../helpQyPages/MyhomeFlatList';
 import  PageFind from '../helpQyPages/PageFind';
 import RedMoneyList from "../helpQyPages/RedMoneyList";
 import PageDescriptionOfGongshi from '../helpQyPages/PageDescriptionOfGongshi';
+import PageRecharge from '../helpQyPages/PageRecharge';
+import PageUseRedMoney from "../helpQyPages/PageUseRedMoney";
 var height = Dimensions.get('window').height - 70;
 
 const TabNav = TabNavigator(
@@ -263,8 +265,13 @@ const HomeScreen = StackNavigator({
     },
     PageDescriptionOfGongshi:{
         screen:PageDescriptionOfGongshi
+    },
+    PageRecharge:{
+        screen:PageRecharge
+    },
+    PageUseRedMoney:{
+        screen:PageUseRedMoney
     }
-
 
 
 
